@@ -1,0 +1,185 @@
+<div class="container mt-5">
+  <div *ngIf="isLoading" class="text-center">
+    <p>Chargement des détails de la chambre...</p>
+  </div>
+  <div *ngIf="!isLoading && chambreDetails" class="card shadow-sm">
+    <div class="row no-gutters">
+      <!-- Image de la chambre -->
+      <div class="col-md-4">
+     
+        <div *ngIf="chambreDetails && chambreDetails.chambres && chambreDetails.chambres.length > 0">
+          <img
+            [src]="'assets/images/' + chambreDetails.nomHotel + '_' + chambreDetails.chambres[0].id + '.jpeg'"
+            alt="Image de la chambre"
+            class="card-img"
+            (error)="onImageError($event)"
+          >
+        </div>
+        
+      </div>
+
+      <!-- Détails de la chambre -->
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ chambreDetails.nomHotel }}</h5>
+          <p class="card-text">
+            <strong>Agence :</strong> {{ chambreDetails.nomAgence }}
+          </p>
+          <p class="card-text">
+            <strong>Nombre d'étoiles :</strong> {{ chambreDetails.nbetoile }}
+          </p>
+
+          <!-- Iterate over chambres -->
+          <div *ngFor="let chambre of chambreDetails.chambres">
+            <p class="card-text">
+              <strong>Numéro de chambre :</strong> {{ chambre.id }}
+            </p>
+            <p class="card-text text-success">
+              <strong>Prix total :</strong> {{ chambre.prixFinalChambre }} €
+            </p>
+            <p class="card-text">
+              <strong>Nombre de lits :</strong> {{ chambre.nbLits || 'Non spécifiés' }}
+            </p>
+          </div>
+
+          <p class="card-text">
+            <strong>Adresse :</strong> {{ chambreDetails.rue }},
+            {{ chambreDetails.ville }}, {{ chambreDetails.pays }}
+          </p>
+
+          <label for="reservation-modal" class="btn btn-primary mt-3">Réserver</label>
+      
+       
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="checkbox" id="reservation-modal" class="modal-toggle" hidden />
+<div class="modal" [ngClass]="{'is-active': showReservationForm}">
+  <div class="modal-content">
+    <label class="close" (click)="closeReservationForm()">&times;</label>
+    <h2>Réserver la chambre</h2>
+    <form (ngSubmit)="submitReservation()" #reservationForm="ngForm" novalidate>
+      <!-- Personal Information -->
+      <div class="form-group">
+        <label for="name">Nom :</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="reservationData.name"
+          #name="ngModel"
+          required
+        />
+        <div *ngIf="name.invalid && name.touched" class="error">Le nom est obligatoire.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="prenom">Prénom :</label>
+        <input
+          type="text"
+          id="prenom"
+          name="prenom"
+          [(ngModel)]="reservationData.prenom"
+          #prenom="ngModel"
+          required
+        />
+        <div *ngIf="prenom.invalid && prenom.touched" class="error">Le prénom est obligatoire.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Numéro de téléphone :</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          [(ngModel)]="reservationData.phone"
+          #phone="ngModel"
+          required
+          pattern="[0-9]{10}"
+        />
+        <div *ngIf="phone.invalid && phone.touched" class="error">Entrez un numéro de téléphone valide (10 chiffres).</div>
+      </div>
+
+      <!-- Credit Card Information -->
+      <h3>Informations de la Carte Bancaire</h3>
+      <div class="form-group">
+        <label for="card-number">Numéro de la carte :</label>
+        <input
+          type="text"
+          id="card-number"
+          name="cardNumber"
+          [(ngModel)]="cardInfo.cardNumber"
+          #cardNumber="ngModel"
+          required
+          pattern="[0-9]{16}"
+          placeholder="1234567890123456"
+        />
+        <div *ngIf="cardNumber.invalid && cardNumber.touched" class="error">Entrez un numéro de carte valide (16 chiffres).</div>
+      </div>
+
+      <div class="form-group">
+        <label for="card-holder">Titulaire de la carte :</label>
+        <input
+          type="text"
+          id="card-holder"
+          name="cardHolder"
+          [(ngModel)]="cardInfo.cardHolder"
+          #cardHolder="ngModel"
+          required
+          placeholder="Nom et Prénom"
+        />
+        <div *ngIf="cardHolder.invalid && cardHolder.touched" class="error">Le nom du titulaire est obligatoire.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="cvv">CVV :</label>
+        <input
+          type="text"
+          id="cvv"
+          name="cvv"
+          [(ngModel)]="cardInfo.cvv"
+          #cvv="ngModel"
+          required
+          pattern="[0-9]{3}"
+          placeholder="123"
+        />
+        <div *ngIf="cvv.invalid && cvv.touched" class="error">Entrez un CVV valide (3 chiffres).</div>
+      </div>
+
+      <div class="form-group">
+        <label for="expiry-date">Date d'expiration (MM/AA) :</label>
+        <input
+          type="text"
+          id="expiry-date"
+          name="expiryDate"
+          [(ngModel)]="cardInfo.expiryDate"
+          #expiryDate="ngModel"
+          required
+          pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+          placeholder="MM/AA"
+        />
+        <div *ngIf="expiryDate.invalid && expiryDate.touched" class="error">Entrez une date d'expiration valide (MM/AA).</div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn" [disabled]="reservationForm.invalid">Réserver</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="modal" [ngClass]="{'is-active': showReservationForm}">
+  <div class="modal-content">
+    <button class="close" (click)="closeReservationForm()">&times;</button>
+    <h2>Réserver la chambre</h2>
+    <!-- Modal content here -->
+
+  </div>
+</div>
+
+
+

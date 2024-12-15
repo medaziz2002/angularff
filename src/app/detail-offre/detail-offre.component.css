@@ -1,0 +1,348 @@
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.card .card-body {
+  padding: 20px;
+}
+
+.card-text {
+  margin-bottom: 10px;
+}
+
+.card .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  display: none;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 8px;
+}
+
+/* Modal toggle */
+.modal-toggle:checked + .modal {
+  display: block; /* Show the modal when checkbox is checked */
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form input {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form .btn {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form .btn:hover {
+  background-color: #0056b3;
+}
+/* Additional styling for credit card form */
+form h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+form input {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Ensure full width for better visibility */
+}
+
+form input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+form .btn {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form .btn:hover {
+  background-color: #0056b3;
+}
+.custom-spacing {
+  margin-right: 15px; /* Ajustez la valeur pour définir l'espace souhaité */
+}
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.card .card-body {
+  padding: 20px;
+}
+
+.card-text {
+  margin-bottom: 10px;
+}
+
+.card .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  display: none;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 8px;
+}
+
+/* Modal toggle */
+.modal-toggle:checked + .modal {
+  display: block; /* Show the modal when checkbox is checked */
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form input {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form .btn {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form .btn:hover {
+  background-color: #0056b3;
+}
+/* Additional styling for credit card form */
+form h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+form input {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Ensure full width for better visibility */
+}
+
+form input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+form .btn {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form .btn:hover {
+  background-color: #0056b3;
+}
+.custom-spacing {
+  margin-right: 15px; /* Ajustez la valeur pour définir l'espace souhaité */
+}
+.modal {
+  display: none;
+}
+
+.modal.is-active {
+  display: block;
+}
+.modal {
+  display: none;
+}
+
+.modal.is-active {
+  display: block;
+}

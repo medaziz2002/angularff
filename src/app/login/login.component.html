@@ -1,0 +1,125 @@
+<div class="login-container">
+  <h1>Connexion - {{ selectedAgency }}</h1>
+
+  <div *ngIf="credentialAlert" class="alert alert-danger">
+    {{ credentialAlert }}
+  </div>
+
+  <form (ngSubmit)="login()" class="form">
+    <div class="form-group">
+      <label for="username">Nom d'utilisateur</label>
+      <input
+        type="text"
+        id="username"
+        [(ngModel)]="username"
+        name="username"
+        class="form-control"
+        placeholder="Entrez votre nom d'utilisateur"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="password"
+        name="password"
+        class="form-control"
+        placeholder="Entrez votre mot de passe"
+        required
+      />
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="btn btn-primary" (click)="login()">Se connecter</button>
+      <button type="button" class="btn btn-secondary" (click)="openModal()">
+        Créer un compte
+      </button>
+    </div>
+  </form>
+
+  <!-- Modal -->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Créer un compte</h2>
+  
+      <form (ngSubmit)="createAccount()">
+        <!-- Name Field -->
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input
+            type="text"
+            id="name"
+            [(ngModel)]="newAccount.name"
+            name="name"
+            class="form-control"
+            placeholder="Entrez votre nom"
+            required
+          />
+        </div>
+  
+        <!-- First Name Field -->
+        <div class="form-group">
+          <label for="firstName">Prénom</label>
+          <input
+            type="text"
+            id="firstName"
+            [(ngModel)]="newAccount.firstName"
+            name="firstName"
+            class="form-control"
+            placeholder="Entrez votre prénom"
+            required
+          />
+        </div>
+  
+        <!-- Phone Number Field -->
+        <div class="form-group">
+          <label for="phoneNumber">Numéro de téléphone</label>
+          <input
+            type="text"
+            id="phoneNumber"
+            [(ngModel)]="newAccount.phoneNumber"
+            name="phoneNumber"
+            class="form-control"
+            placeholder="Entrez votre numéro de téléphone"
+            required
+          />
+        </div>
+  
+        <!-- Username Field -->
+        <div class="form-group">
+          <label for="new-username">Nom d'utilisateur</label>
+          <input
+            type="text"
+            id="new-username"
+            [(ngModel)]="newAccount.username"
+            name="newUsername"
+            class="form-control"
+            placeholder="Entrez votre nom d'utilisateur"
+            required
+          />
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="new-password">Mot de passe</label>
+          <input
+            type="password"
+            id="new-password"
+            [(ngModel)]="newAccount.password"
+            name="newPassword"
+            class="form-control"
+            placeholder="Entrez votre mot de passe"
+            required
+          />
+        </div>
+  
+        <button type="submit" class="btn btn-primary" (click)="createAccount()">Créer</button>
+      </form>
+    </div>
+  </div>
+  
+</div>

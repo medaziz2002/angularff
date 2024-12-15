@@ -1,0 +1,50 @@
+
+<div class="container">
+  <!-- Image de plage -->
+  <img src="assets/images/hq720.jpg" alt="Image de plage" class="beach-image" />
+
+  <!-- Formulaire de sélection d'agence -->
+  <div class="form-container">
+    <label for="agency">Sélectionner une agence :</label>
+    <select id="agency" [(ngModel)]="selectedAgencyId">
+      <!-- Placeholder option -->
+      <option [ngValue]="null" disabled selected>-- Sélectionner une agence --</option>
+      <!-- Dynamically generate options -->
+      <option *ngFor="let agency of agencyList" [ngValue]="agency.id">
+        {{ agency.name }}
+      </option>
+    </select>
+    <br />
+    <button (click)="goToLogin()">Chercher</button>
+  </div>
+  
+</div>
+
+<!-- Angular Component CSS -->
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    text-align: center;
+  }
+  .beach-image {
+    width: 60%;
+    height: auto;
+  }
+  .form-container {
+    margin-top: 20px;
+  }
+  label {
+    font-weight: bold;
+  }
+  select,
+  button {
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+</style>
+

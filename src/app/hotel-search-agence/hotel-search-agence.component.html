@@ -1,0 +1,250 @@
+<div class="d-flex justify-content-between align-items-center w-100 mb-3 p-3 border-bottom">
+    <!-- Mes Réservations -->
+    <div>
+      <button class="btn btn-outline-primary" (click)="goToReservations()">
+        <i class="fas fa-shopping-cart mr-2"></i> Mes Réservations
+      </button>
+    </div>
+  
+    <!-- Déconnexion -->
+    <div>
+      <button class="btn btn-outline-danger" (click)="logout()">
+        <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
+      </button>
+    </div>
+  </div>
+  
+  <div class="d-flex flex-column align-items-center mt-5">
+    <div class="d-flex flex-column border p-4 rounded bg-light w-75">
+      <!-- Agences avec Switch -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Agence Booking -->
+        <div class="d-flex align-items-center">
+          
+       
+        </div>
+        <!-- Agence Navigo -->
+        <div class="d-flex align-items-center">
+          <label class="mr-3">{{selectedAgency}}</label>
+          <label class="switch">
+            <input
+              type="checkbox"
+              id="agenceNavigo"
+              [(ngModel)]="isAgenceNavigoChecked"
+          
+            />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+  
+      <!-- Ligne Destination et Nombre de personnes -->
+      <div class="d-flex justify-content-between mt-3">
+        <!-- Destination -->
+        <div class="form-group w-50 d-flex align-items-center mr-3">
+          <label for="destination" class="mr-2" [(ngModel)]="destination" name="destination">Destination</label>
+          <select class="form-control" id="destination">
+            <option value="France">France</option>
+            <option value="Italie">Italie</option>
+            <option value="Espagne">Espagne</option>
+            <option value="Allemagne">Allemagne</option>
+            <option value="États-Unis">États-Unis</option>
+            <option value="Japon">Japon</option>
+            <option value="Canada">Canada</option>
+            <option value="Australie">Australie</option>
+          </select>
+        </div>
+  
+        <!-- Nombre de personnes -->
+        <div class="form-group w-50 d-flex align-items-center ml-3">
+          <label for="nb-personnes" class="mr-2">Nombre de personnes</label>
+          <input
+            type="number"
+            [(ngModel)]="taille"
+            class="form-control"
+            name="taille"
+            id="nb-personnes"
+            min="1"
+            max="10"
+            value="1"
+          />
+        </div>
+      </div>
+  
+      <!-- Dates d'arrivée et de départ -->
+      <div class="d-flex justify-content-between mt-3">
+        <div class="form-group w-50 d-flex align-items-center">
+          <label for="arrival"  class="mr-2">Arrivée</label>
+          <input type="date" name="dateArrivee" [(ngModel)]="dateArrivee" class="form-control" id="arrival" />
+        </div>
+        <div class="form-group w-50 d-flex align-items-center ml-3">
+          <label for="departure" class="mr-2">Départ</label>
+          <input type="date" name="dateDepart"  [(ngModel)]="dateDepart" class="form-control" id="departure" />
+        </div>
+      </div>
+  
+      <!-- Sélection d'étoiles -->
+      <div class="form-group mt-3 d-flex align-items-center">
+        <label class="mr-3">Étoiles</label>
+        <div class="mr-3">
+          <i
+            class="fa"
+            [ngClass]="selectedRating >= 1 ? 'fas fa-star' : 'far fa-star'"
+            (click)="setRating(1)"
+          ></i>
+          <i
+            class="fa"
+            [ngClass]="selectedRating >= 2 ? 'fas fa-star' : 'far fa-star'"
+            (click)="setRating(2)"
+          ></i>
+          <i
+            class="fa"
+            [ngClass]="selectedRating >= 3 ? 'fas fa-star' : 'far fa-star'"
+            (click)="setRating(3)"
+          ></i>
+          <i
+            class="fa"
+            [ngClass]="selectedRating >= 4 ? 'fas fa-star' : 'far fa-star'"
+            (click)="setRating(4)"
+          ></i>
+          <i
+            class="fa"
+            [ngClass]="selectedRating >= 5 ? 'fas fa-star' : 'far fa-star'"
+            (click)="setRating(5)"
+          ></i>
+        </div>
+      </div>
+  
+      <!-- Prix Min et Max -->
+      <div class="d-flex justify-content-between mt-3">
+        <!-- Prix minimum -->
+        <div class="form-group w-50 d-flex align-items-center">
+          <label for="price-min" class="mr-2">Prix Min</label>
+          <input
+            type="range"
+            id="price-min"
+            class="form-range"
+            min="0"
+            max="500"
+            step="10"
+            [(ngModel)]="priceMin"
+            (input)="updatePriceLabel('min', priceMin)"
+          />
+          <span class="ml-2">{{ priceMin }} €</span>
+        </div>
+  
+        <!-- Prix maximum -->
+        <div class="form-group w-50 d-flex align-items-center ml-3">
+          <label for="price-max" class="mr-2">Prix Max</label>
+          <input
+            type="range"
+            id="price-max"
+            class="form-range"
+            min="500"
+            max="1000"
+            step="10"
+            [(ngModel)]="priceMax"
+            (input)="updatePriceLabel('max', priceMax)"
+          />
+          <span class="ml-2">{{ priceMax }} €</span>
+        </div>
+      </div>
+  
+      <!-- Bouton rechercher -->
+      <button class="btn btn-primary btn-block mt-3" (click)="fetchData()">Rechercher</button>
+    </div>
+  
+    <!-- Meilleur prix et meilleur hôtel pour toutes les agences -->
+  
+  
+  
+  <!--
+  
+    <div class="w-75 mt-3">
+      <h5>Hôtels de l'Agence Booking</h5>
+      <div *ngFor="let hotel of listeHotelsBooking" class="hotel-card border p-3 mb-3">
+        <h3>{{ hotel.nomHotel }}</h3>
+        <p><strong>Étoiles :</strong> {{ hotel.nbetoile }}</p>
+        <p><strong>Ville :</strong> {{ hotel.ville }}, {{ hotel.pays }}</p>
+        <p><strong>Adresse :</strong> {{ hotel.rue }}, {{ hotel.codePostal }}</p>
+        <p><strong>Lieu-dit :</strong> {{ hotel.lieu_dit }}</p>
+        <h5>Chambres disponibles :</h5>
+        <ul>
+          <li *ngFor="let chambre of hotel.chambres">
+            Chambre n°{{ chambre.numeroChambre }} - {{ chambre.nbLits }} lits - {{ chambre.prix }} €
+          </li>
+        </ul>
+      </div>
+    </div>
+  -->
+    <br>
+    <div class="d-flex w-100">
+      <!-- Liste des Hôtels -->
+      <div class="col-6 border-right p-3">
+        <!-- Display grouped and paginated hotels -->
+        <div *ngFor="let hotel of paginatedHotels" class="hotel-card border p-3 mb-3 d-flex">
+          <!-- Hotel Details -->
+          <div class="col-6 pr-3">
+            <p>
+              <span *ngFor="let star of [].constructor(hotel.nbetoile)">
+                <i class="fas fa-star text-warning"></i>
+              </span>
+            </p>
+            <h3>{{ hotel.nomHotel }}</h3>
+            <p><strong>Adresse :</strong> {{ hotel.rue }}, {{ hotel.ville }}, {{ hotel.pays }}</p>
+          </div>
+  
+          <!-- Room Details -->
+          <div class="col-6 pl-3">
+            <h5>Chambres disponibles :</h5>
+            <ul>
+              <li *ngFor="let chambre of hotel.chambres" style="cursor: pointer; color: blue;">
+                <a [routerLink]="[
+                '/detail-offre',
+                hotel.nomHotel,
+                chambre.id,
+                hotel.nomAgence,
+                dateArrivee,
+                dateDepart
+              ]">
+                Chambre n°{{ chambre.id }} - {{ chambre.nbLits }} lits - {{ chambre.prix }} € - Prix final {{ chambre.prixFinalChambre }}€
+              </a>
+              </li>
+            </ul>
+      
+            
+          </div>
+        </div>
+  
+        <!-- Pagination Controls -->
+        <nav class="mt-4">
+          <ul class="pagination">
+            <li
+              class="page-item"
+              *ngFor="let page of totalPages"
+              [class.active]="page === currentPage"
+            >
+              <a class="page-link" (click)="goToPage(page)">{{ page }}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  
+  
+  
+  
+      <!-- Carte -->
+  
+      <div class="col-6 p-3" id="map-container" *ngIf="test">
+        <app-map [hotels]="hotelsForMap"></app-map>
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  

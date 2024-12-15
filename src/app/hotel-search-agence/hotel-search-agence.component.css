@@ -1,0 +1,156 @@
+/* Centrer les étoiles */
+.fa-star-o {
+    font-size: 24px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: gold;
+  }
+  
+  .fa-star-o:hover {
+    transform: scale(1.2);
+  }
+  
+  .fa-star {
+    font-size: 24px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: gold;
+  }
+  
+  .form-range {
+    width: 100%;
+  }
+  
+  button {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(14px);
+  }
+  
+  
+  /* Assurez-vous que les colonnes prennent correctement l'espace */
+  .d-flex.w-100 {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .hotel-card {
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  #map {
+    height: 100%; /* S'assurer que la carte occupe toute la hauteur */
+    width: 100%;
+    border-left: 1px solid #ddd;
+  }
+  
+  
+  
+  
+  .d-flex.w-100 {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .hotel-card {
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  #map {
+    height: 100%; /* S'assurer que la carte occupe toute la hauteur */
+    width: 100%;
+    border-left: 1px solid #ddd;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .page-item {
+    margin: 0 5px;
+  }
+  
+  .page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .page-link {
+    cursor: pointer;
+    color: #007bff;
+  }
+  canvas {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .agency-green {
+    color: green;
+  }
+  
+  .agency-red {
+    color: red;
+  }
+  
